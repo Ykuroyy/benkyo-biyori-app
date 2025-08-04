@@ -7,8 +7,12 @@ export function StudyWeather() {
   const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
+    console.log('StudyWeather useEffect triggered')
+    console.log('STUDY_WEATHER_DATA:', STUDY_WEATHER_DATA)
+    
     // 時間帯に応じて天気を選択
     const hour = new Date().getHours()
+    console.log('Current hour:', hour)
     let filteredWeather: StudyWeatherType[]
     
     if (hour >= 6 && hour < 10) {
@@ -28,13 +32,24 @@ export function StudyWeather() {
       filteredWeather = STUDY_WEATHER_DATA.filter(w => w.mood === 'starry' || w.mood === 'rainy')
     }
     
+    console.log('Filtered weather:', filteredWeather)
+    
+    // フィルタリング結果が空の場合はすべてのデータから選択
+    if (filteredWeather.length === 0) {
+      filteredWeather = STUDY_WEATHER_DATA
+    }
+    
     // ランダムに選択
     const randomWeather = filteredWeather[Math.floor(Math.random() * filteredWeather.length)]
-    setWeather(randomWeather)
-    setIsAnimating(true)
+    console.log('Selected weather:', randomWeather)
     
-    // アニメーション終了後にフラグをリセット
-    setTimeout(() => setIsAnimating(false), 500)
+    if (randomWeather) {
+      setWeather(randomWeather)
+      setIsAnimating(true)
+      
+      // アニメーション終了後にフラグをリセット
+      setTimeout(() => setIsAnimating(false), 500)
+    }
   }, [])
 
   if (!weather) return null
