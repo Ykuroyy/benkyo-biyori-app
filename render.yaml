@@ -8,3 +8,9 @@ services:
       - path: /*
         name: X-Frame-Options
         value: SAMEORIGIN
+      - path: /assets/*.js
+        name: Content-Type
+        value: application/javascript; charset=UTF-8
+      - path: /assets/*.css
+        name: Content-Type
+        value: text/css; charset=UTF-8

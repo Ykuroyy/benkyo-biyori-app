@@ -1,0 +1,11 @@
+/*
+  Content-Type: text/html; charset=UTF-8
+
+/assets/*.js
+  Content-Type: application/javascript; charset=UTF-8
+
+/assets/*.css
+  Content-Type: text/css; charset=UTF-8
+
+/assets/*.json
+  Content-Type: application/json; charset=UTF-8
