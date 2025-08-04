@@ -1,0 +1,124 @@
+.study-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  margin: var(--spacing-xl) auto;
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-slow);
+}
+
+.study-weather.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.weather-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-icon::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.weather-icon:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.emoji {
+  font-size: 4rem;
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.weather-message {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: center;
+  line-height: 1.4;
+  margin: 0;
+  animation: fadeIn 0.5s ease-out 0.2s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.motivation-meter {
+  width: 100%;
+  max-width: 300px;
+  animation: fadeIn 0.5s ease-out 0.4s both;
+}
+
+.meter-label {
+  display: block;
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+  text-align: center;
+}
+
+.meter-bar {
+  width: 100%;
+  height: 12px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow) ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.meter-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.4) 50%, 
+    transparent 100%);
+  animation: slide 2s linear infinite;
+}
+
+@keyframes slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
